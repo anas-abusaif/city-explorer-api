@@ -7,7 +7,7 @@ const PORT = process.env.PORT;
 const WeatherControler=require('./controlers/Weather.controler')
 
 app.get('/',(req,res)=>{
-  res.send('hello')
+  res.send('hello there')
 })
 
 app.get('/weather', WeatherControler);
