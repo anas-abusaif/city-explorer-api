@@ -4,10 +4,9 @@ const cors = require('cors');
 app.use(cors())
 require('dotenv').config();
 const PORT = process.env.PORT;
-const weather = require('./data/weather.json');
 const WeatherControler=require('./controlers/Weather.controler')
 
-app.get('/',(req,send)=>{
+app.get('/',(req,res)=>{
   res.send('hello')
 })
 
