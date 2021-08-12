@@ -8,7 +8,7 @@ const weather = require('./data/weather.json');
 const WeatherControler=require('./controlers/Weather.controler')
 
 app.get('/',(req,send)=>{
-  resizeBy.send('hello')
+  res.send('hello')
 })
 
 app.get('/weather', WeatherControler);
