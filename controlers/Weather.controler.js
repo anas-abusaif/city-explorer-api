@@ -1,20 +1,20 @@
 'use strict';
-const Forcast=require('../models/Weather.model');
-const weather = require('../data/weather.json');
+const axios = require('axios')
+const Forcast = require('../models/Weather.model');
 
 
-const getWeather=(req, res) => {
-  let searchQuery = req.query['searchQuery'];
-  let lat = req.query['lat'];
-  let lon = req.query['lon'];
-  const generalWeather = weather.find(item => { return (item.city_name.toUpperCase() === searchQuery.toUpperCase()) });
+const getWeather = (req, res) => {
+  let url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${req.query['searchQuery']}`
   let displayWeather = []
-  generalWeather.data.forEach(element => {
-    let weatherData = new Forcast(element);
-    displayWeather.push(weatherData);
-  });
+  axios.get(url).then(recived => {
+   recived.data.data.forEach(day=>{
+     displayWeather.push(new Forcast(day))
+   })
+    res.send(displayWeather);
+  })
 
-  res.send(displayWeather);
+
+  
 }
 
-module.exports=getWeather;
+module.exports = getWeather;
