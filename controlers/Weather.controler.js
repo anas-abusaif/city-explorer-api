@@ -10,7 +10,7 @@ const getWeather = (req, res) => {
    recived.data.data.forEach(dayy=>{
      displayWeather.push(new Forcast(dayy))
    })
-    res.send(recived.data);
+    res.send(displayWeather);
   })
 
 
